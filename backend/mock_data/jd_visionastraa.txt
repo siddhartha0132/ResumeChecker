@@ -1,0 +1,46 @@
+VisionAstraa EV Academy — EV Technology Intern
+Company: VisionAstraa EV Academy
+Location: Hybrid / Remote Friendly
+Duration: 3–6 Months
+Stipend: ₹8,000–₹15,000/month
+
+ABOUT US:
+VisionAstraa EV Academy is India's fastest-growing electric vehicle education platform.
+We train the next generation of EV engineers, designers, and innovators.
+
+ROLE OVERVIEW:
+We are looking for passionate interns to work on electric vehicle technology, battery systems,
+motor control, EV software, and education content. This is a hands-on role where you will
+contribute to real EV projects.
+
+KEY RESPONSIBILITIES:
+- Assist in designing and testing EV battery management systems (BMS)
+- Develop embedded firmware for motor controllers (BLDC/PMSM)
+- Build Python tools for EV performance data analysis
+- Create CAD models of EV components using SolidWorks or AutoCAD
+- Write technical content for VisionAstraa's learning platform
+
+REQUIRED SKILLS:
+- Python programming (data analysis or embedded scripting)
+- Basic knowledge of Electric Vehicles and EV components
+- Embedded Systems: Arduino, Raspberry Pi, STM32, or ESP32
+- CAD tools: SolidWorks, AutoCAD, or Fusion 360
+- Battery chemistry basics and BMS concepts
+- Motor control fundamentals
+
+GOOD TO HAVE:
+- C++ for embedded development
+- MATLAB/Simulink for simulation
+- Machine Learning for predictive analytics
+- CAN Bus protocol knowledge
+- PCB design (KiCad / Altium)
+- EV project on GitHub
+
+SELECTION CRITERIA:
+- ATS Score (skills + experience + education + format): 40%
+- Why VisionAstraa essay: 25%
+- EV project description: 20%
+- Portfolio / GitHub: 15%
+- Availability alignment: 10%
+
+Apply at: careers.visionastraa.com
