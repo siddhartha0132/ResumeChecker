@@ -1,0 +1,17 @@
+-r base.txt
+
+# Task Queue (for 50k pipeline)
+celery==5.4.0
+redis==5.0.4
+
+# Monitoring
+prometheus-client==0.20.0
+
+# Production Server
+gunicorn==22.0.0
+
+# Caching
+aioredis==2.0.1
+
+# Export
+fpdf2==2.7.9
