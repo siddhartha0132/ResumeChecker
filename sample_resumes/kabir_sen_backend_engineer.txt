@@ -1,0 +1,9 @@
+Kabir Sen
+kabir.sen@example.com
++1 415 555 0198
+
+Backend Engineer with experience designing production APIs and data workflows. Built Flask and FastAPI services for document ingestion, authentication, file validation, CSV exports, and asynchronous processing.
+
+Skills: Python, Flask, FastAPI, REST API, API design, SQL, PostgreSQL, MongoDB, Docker, Kubernetes, AWS, microservices, Git.
+
+Projects: Implemented secure file upload services with per-run storage, validation, structured logging, and ranked data outputs for analytics applications.

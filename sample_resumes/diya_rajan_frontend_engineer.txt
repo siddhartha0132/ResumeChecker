@@ -1,0 +1,9 @@
+Diya Rajan
+diya.rajan@example.com
+99887 77665
+
+Frontend Engineer focused on responsive dashboards and analytics products. Built recruiter-facing interfaces with React, JavaScript, TypeScript, HTML, CSS, accessibility best practices, and REST API integration.
+
+Skills: React, JavaScript, TypeScript, HTML, CSS, UI design, data visualization, REST API, Git, project management, business intelligence.
+
+Projects: Created a ranked candidate dashboard with score badges, filters, skill chips, and CSV export. Worked closely with backend engineers to consume JSON APIs and display NLP-derived insights.

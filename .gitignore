@@ -1,0 +1,8 @@
+/notebooks
+/Parser-venv
+__pycache__
+/*.pyc
+/venv
+/files
+/Rpvenv
+/flask.log

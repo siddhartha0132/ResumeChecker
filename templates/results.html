@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VisionAstraa Candidate Rankings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <main class="page-shell results-shell">
+        <section class="results-header">
+            <div>
+                <p class="eyebrow">VisionAstraa Candidate Dashboard</p>
+                <h1>Ranked Resume Matches</h1>
+                <p class="muted">Generated {{ generated_at }}</p>
+            </div>
+            <div class="header-actions">
+                <a class="secondary-button link-button" href="{{ url_for('index') }}">New Score Run</a>
+                <a class="primary-button link-button" href="{{ url_for('download_results', run_id=run_id) }}">Download CSV</a>
+            </div>
+        </section>
+
+        {% if failed_documents %}
+            <section class="messages standalone">
+                <h2>Failed Documents</h2>
+                {% for document in failed_documents %}
+                    <div class="message error">{{ document.filename }}: {{ document.error }}</div>
+                {% endfor %}
+            </section>
+        {% endif %}
+
+        {% if duplicates %}
+            <section class="messages standalone">
+                <h2>Duplicate Files Detected</h2>
+                {% for original_name, duplicate_of in duplicates %}
+                    <div class="message warning">Duplicate detected: {{ original_name }} is identical to {{ duplicate_of }}</div>
+                {% endfor %}
+            </section>
+        {% endif %}
+
+        {% set candidates_with_red_flags = candidates | selectattr('red_flags') | list | length %}
+        {% set candidates_with_warnings = candidates | selectattr('warnings') | list | length %}
+
+        {% if candidates_with_red_flags > 0 %}
+            <section class="messages standalone">
+                <div class="message error">
+                    <strong>⚠️ Potential fake resumes detected!</strong> 
+                    {{ candidates_with_red_flags }} candidate(s) have red flags indicating potentially fake/invalid resume content.
+                </div>
+            </section>
+        {% endif %}
+
+        <section class="summary-grid">
+            <article class="summary-card">
+                <span>Total Candidates</span>
+                <strong>{{ summary.total }}</strong>
+            </article>
+            <article class="summary-card">
+                <span>Top Score</span>
+                <strong>{{ summary.top_score }}%</strong>
+            </article>
+            <article class="summary-card">
+                <span>Average Score</span>
+                <strong>{{ summary.average_score }}%</strong>
+            </article>
+            <article class="summary-card">
+                <span>Top Candidate</span>
+                <strong>{{ summary.top_candidate }}</strong>
+            </article>
+            {% if summary.candidates_with_warnings %}
+                <article class="summary-card warning-card">
+                    <span>Candidates with Warnings</span>
+                    <strong>{{ summary.candidates_with_warnings }}</strong>
+                </article>
+            {% endif %}
+            {% if summary.candidates_with_red_flags %}
+                <article class="summary-card danger-card">
+                    <span>Candidates with Red Flags</span>
+                    <strong>{{ summary.candidates_with_red_flags }}</strong>
+                </article>
+            {% endif %}
+        </section>
+
+        {% if summary.jd_skills %}
+            <section class="panel jd-panel">
+                <h2>JD Skills Detected</h2>
+                <div class="chip-row">
+                    {% for skill in summary.jd_skills %}
+                        <span class="chip neutral">{{ skill }}</span>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+
+        <section class="panel table-panel">
+            <div class="table-title-row">
+                <h2>Candidate Ranking</h2>
+                <span class="muted">Final score = 72% text similarity + 28% skill match</span>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Candidate</th>
+                            <th>Score</th>
+                            <th>Contact</th>
+                            <th>Matched Skills</th>
+                            <th>Missing Skills</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for candidate in candidates %}
+                            <tr class="{% if candidate.red_flags %}row-danger{% elif candidate.warnings %}row-warning{% endif %}">
+                                <td><span class="rank">#{{ candidate.rank }}</span></td>
+                                <td>
+                                    <div class="candidate-info">
+                                        <strong>{{ candidate.name }}</strong>
+                                        <span class="filename">{{ candidate.filename }}</span>
+                                        {% if candidate.is_ocr %}
+                                            <span class="badge ocr-badge" title="Text extracted via OCR">OCR</span>
+                                        {% endif %}
+                                        <span class="mini-score">Text {{ candidate.text_score }}% · Skills {{ candidate.skill_score }}%</span>
+                                        {% if candidate.red_flags %}
+                                            <div class="red-flags">
+                                                <strong>⚠️ Red Flags:</strong>
+                                                <ul>
+                                                    {% for flag in candidate.red_flags %}
+                                                        <li>{{ flag }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                        {% if candidate.warnings %}
+                                            <div class="warnings">
+                                                <strong>Warnings:</strong>
+                                                <ul>
+                                                    {% for warning in candidate.warnings %}
+                                                        <li>{{ warning }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td>
+                                    {% if candidate.score >= 75 %}
+                                        <span class="score high">{{ candidate.score }}%</span>
+                                    {% elif candidate.score >= 45 %}
+                                        <span class="score medium">{{ candidate.score }}%</span>
+                                    {% else %}
+                                        <span class="score low">{{ candidate.score }}%</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="contact-line">{{ candidate.email }}</span>
+                                    <span class="contact-line">{{ candidate.phone }}</span>
+                                </td>
+                                <td>
+                                    <div class="chip-row compact-chips">
+                                        {% if candidate.matched_skills %}
+                                            {% for skill in candidate.matched_skills %}
+                                                <span class="chip good">{{ skill }}</span>
+                                            {% endfor %}
+                                        {% else %}
+                                            <span class="muted">No direct skill match</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="chip-row compact-chips">
+                                        {% if candidate.missing_skills %}
+                                            {% for skill in candidate.missing_skills[:8] %}
+                                                <span class="chip warn">{{ skill }}</span>
+                                            {% endfor %}
+                                            {% if candidate.missing_skills|length > 8 %}
+                                                <span class="chip neutral">+{{ candidate.missing_skills|length - 8 }} more</span>
+                                            {% endif %}
+                                        {% else %}
+                                            <span class="chip good">No gaps</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

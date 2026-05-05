@@ -1,0 +1,9 @@
+Aarav Mehta
+aarav.mehta@example.com
++91 98765 43210
+
+Machine Learning Engineer with 4 years of experience building NLP systems, Python services, and model evaluation workflows. Built resume ranking and document classification pipelines using scikit-learn, transformers, TF-IDF, cosine similarity, pandas, and SQL.
+
+Skills: Python, machine learning, natural language processing, NLP, transformers, scikit-learn, Flask, FastAPI, REST API, SQL, Docker, Git, data analysis.
+
+Projects: Developed an automated candidate scoring engine for HR teams. Designed entity extraction using regex and NLP, matched skills against job descriptions, and delivered explainable ranking dashboards.

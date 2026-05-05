@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VisionAstraa Resume Scorer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <main class="page-shell compact">
+        <section class="panel form-panel">
+            <div class="brand-row">
+                <div>
+                    <p class="eyebrow">VisionAstraa Hiring Intelligence</p>
+                    <h1>Automated Resume Parser & Candidate Scorer</h1>
+                </div>
+                <span class="badge">PDF · TXT · DOCX · OCR Enabled</span>
+            </div>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="messages">
+                        {% for category, message in messages %}
+                            <div class="message {{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form class="score-form" action="{{ url_for('score') }}" method="post" enctype="multipart/form-data">
+                <label class="field-label" for="resumes">Upload {{ min_resumes }}-{{ max_resumes }} resumes</label>
+                <input id="resumes" name="resumes" type="file" multiple required accept=".pdf,.txt,.docx">
+                <p class="help-text">
+                    Supported formats: {{ allowed_extensions | join(', ') | upper }}. 
+                    Scanned PDFs are supported via OCR. Max 10MB per file, 50MB total.
+                    Files are validated for security and resume content.
+                </p>
+
+                <label class="field-label" for="job_description">Job description / VisionAstraa criteria</label>
+                <textarea id="job_description" name="job_description" rows="10" required placeholder="Paste the target role, responsibilities, required skills, tools, and preferred experience here."></textarea>
+
+                <div class="actions">
+                    <button type="submit" class="primary-button">Score Candidates</button>
+                    <button type="reset" class="secondary-button">Clear</button>
+                </div>
+            </form>
+        </section>
+
+        <aside class="panel notes-panel">
+            <h2>Security & Validation</h2>
+            <ul class="checklist">
+                <li>Files are checked for malicious content (executables disguised as documents)</li>
+                <li>Resume content is validated (non-resume files are rejected)</li>
+                <li>Fake resumes with suspicious content are flagged with warnings</li>
+                <li>Scanned/image PDFs are processed using OCR</li>
+                <li>Duplicate files are detected and reported</li>
+            </ul>
+
+            <h2>Demo Checklist</h2>
+            <ul class="checklist">
+                <li>Upload 5-10 resumes in one batch.</li>
+                <li>Paste one JD with technical and soft-skill criteria.</li>
+                <li>Review ranked candidates, matched skills, missing skills, and scores.</li>
+                <li>Download the CSV for submission evidence.</li>
+            </ul>
+
+            {% if sample_resumes %}
+                <h2>Included Mock Resumes</h2>
+                <div class="sample-list">
+                    {% for resume in sample_resumes %}
+                        <span>{{ resume }}</span>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </aside>
+    </main>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

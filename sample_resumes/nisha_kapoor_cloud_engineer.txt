@@ -1,0 +1,9 @@
+Nisha Kapoor
+nisha.kapoor@example.com
++91 91234 56780
+
+Cloud Engineer experienced in containerized deployments, infrastructure automation, and scalable data services. Worked with Azure, AWS, Docker, Kubernetes, Linux, CI/CD, monitoring, and secure application delivery.
+
+Skills: Azure, AWS, cloud computing, Docker, Kubernetes, Python, Linux, microservices, SQL, Git, API design, project management.
+
+Projects: Deployed Flask and FastAPI applications to cloud environments. Built reliable pipelines for document processing workloads and created operational dashboards for engineering teams.

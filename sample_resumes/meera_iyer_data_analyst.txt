@@ -1,0 +1,9 @@
+Meera Iyer
+meera.iyer@example.com
+98765 12345
+
+Data Analyst with 3 years of experience supporting hiring, operations, and business teams. Strong in SQL, Excel, Python, statistics, data analysis, business intelligence, dashboard reporting, and stakeholder communication.
+
+Skills: SQL, Python, statistics, data analysis, Microsoft Excel, business intelligence, data visualization, project management, communication.
+
+Projects: Built hiring funnel dashboards and candidate quality reports. Analyzed skill gaps, resume keywords, and job description alignment for recruiting teams.
