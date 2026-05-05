@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-white;
+    font-family: 'Inter', sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #00C853;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  /* Glass morphism card */
+  .glass-card {
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply bg-green-500 text-black px-6 py-2.5 rounded-xl font-bold
+           hover:bg-green-400 active:scale-95
+           transition-all duration-200 shadow-lg shadow-green-500/20;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply px-4 py-2 rounded-xl font-semibold
+           transition-all duration-200;
+    background: rgba(0, 145, 234, 0.15);
+    border: 1px solid rgba(0, 145, 234, 0.3);
+    color: #0091EA;
+  }
+  .btn-secondary:hover {
+    background: rgba(0, 145, 234, 0.25);
+  }
+
+  /* Card (dark glass) */
+  .card {
+    @apply glass-card rounded-2xl p-6;
+  }
+
+  /* Match score badges */
+  .match-high {
+    background: rgba(0, 200, 83, 0.15);
+    color: #00ff88;
+    border: 1px solid rgba(0, 200, 83, 0.3);
+  }
+  .match-mid {
+    background: rgba(255, 204, 0, 0.15);
+    color: #ffcc00;
+    border: 1px solid rgba(255, 204, 0, 0.3);
+  }
+  .match-low {
+    background: rgba(255, 80, 60, 0.15);
+    color: #ff6644;
+    border: 1px solid rgba(255, 80, 60, 0.3);
+  }
+
+  /* Neon glow text */
+  .neon-text {
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff4488;
+  }
+
+  /* Input fields dark theme */
+  input, textarea, select {
+    @apply bg-white/5 border border-white/10 text-white rounded-xl
+           focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500/50;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Table dark theme */
+  table {
+    @apply w-full text-sm;
+  }
+  thead {
+    background: rgba(0, 200, 83, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  th {
+    @apply text-left px-4 py-3 font-semibold text-green-400/80 text-xs uppercase tracking-wider;
+  }
+  td {
+    @apply px-4 py-3 text-gray-300;
+  }
+  tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 0.15s;
+  }
+  tbody tr:hover {
+    background: rgba(0, 200, 83, 0.04);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #00C853, #0091EA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
