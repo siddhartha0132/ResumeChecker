@@ -27,3 +27,4 @@ Upload PDFs or paste text → NLP regex extracts skills → Gemini scores → ra
 - **Backend**: FastAPI, aiosqlite, pdfplumber, google-generativeai
 - **Frontend**: React 18, Vite, Chart.js, Axios
 # ResumeChecker
+# ResumeChecker
